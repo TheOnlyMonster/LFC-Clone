@@ -7,6 +7,7 @@ import {
   MenuItem,
   SwipeableDrawer,
   Divider,
+  Slide
 } from "@mui/material";
 import { useState } from "react";
 import navBar from "./NavigationBarList";
@@ -96,36 +97,41 @@ export default function NavigationBarSmall() {
                   </Typography>
                 </MenuItem>
               ))}
-            {subMenuItems !== null &&
-              subMenuItems.map((item) => (
-                <Box key={item.subLabel}>
-                  <Typography
-                    textTransform={"uppercase"}
-                    fontSize={"0.7rem"}
-                    fontWeight={"bold"}
-                  >
-                    {item.subLabel}
-                  </Typography>
-                  {item.subItems.map((subItem) => (
-                    <MenuItem
-                      key={subItem}
-                      sx={{
-                        padding: "5px 0px",
-                        "&:hover": {
-                          backgroundColor: "transparent",
-                        }
-                      }}
-                    >
+              {subMenuItems !== null && (
+              <Slide in={true} direction="right">
+                <Box>
+                  {subMenuItems.map((item) => (
+                    <Box key={item.subLabel}>
                       <Typography
-                        color={"#545454"}
-                        fontSize={"0.7rem"}
+                        textTransform="uppercase"
+                        fontSize="0.7rem"
+                        fontWeight="bold"
                       >
-                        {subItem}
+                        {item.subLabel}
                       </Typography>
-                    </MenuItem>
+                      {item.subItems.map((subItem) => (
+                        <MenuItem
+                          key={subItem}
+                          sx={{
+                            padding: "5px 0px",
+                            "&:hover": {
+                              backgroundColor: "transparent",
+                            }
+                          }}
+                        >
+                          <Typography
+                            color="#545454"
+                            fontSize="0.7rem"
+                          >
+                            {subItem}
+                          </Typography>
+                        </MenuItem>
+                      ))}
+                    </Box>
                   ))}
                 </Box>
-              ))}
+              </Slide>
+            )}
           </Box>
         </SwipeableDrawer>
       </Box>
