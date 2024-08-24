@@ -1,7 +1,20 @@
-import { Toolbar, Box, Divider, Typography, Fade } from "@mui/material";
+import {
+  Toolbar,
+  Box,
+  Divider,
+  Typography,
+  Fade,
+  IconButton,
+} from "@mui/material";
 import NavItem from "../NavItem/NavItem";
 import { useState } from "react";
 import navBar from "./NavigationBarList";
+import CustomLink from "./CustomLink";
+import FacebookOutlinedIcon from "@mui/icons-material/FacebookOutlined";
+import TwitterIcon from "@mui/icons-material/Twitter";
+import InstagramIcon from "@mui/icons-material/Instagram";
+import YouTubeIcon from "@mui/icons-material/YouTube";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
 export default function NavigationBarBig() {
   const [subMenuVisible, setSubMenuVisible] = useState(false);
   const [subMenuItems, setSubMenuItems] = useState([]);
@@ -82,47 +95,100 @@ export default function NavigationBarBig() {
             width: "100%",
             boxShadow: "0px 0px 40px rgba(0, 0, 0, 0.6)",
             display: "flex",
-            padding: "25px",
-            justifyContent: "space-between",
+            justifyContent: "space-around",
             boxSizing: "border-box",
+            flexDirection: "column",
           }}
           onMouseLeave={handleCloseSubMenu}
           onMouseEnter={() => setSubMenuVisible(true)}
         >
-          {subMenuItems.map((subCategory) => (
-            <Box key={subCategory.subLabel} sx={{ color: "black" }}>
-              <Typography
-                textTransform={"uppercase"}
-                sx={{
-                  fontWeight: "bold",
-                  marginBottom: "10px",
-                  fontSize: "0.8rem",
-                }}
-              >
-                {subCategory.subLabel}
-              </Typography>
-              {subCategory.subItems.map((subItem) => (
+          <Box display={"flex"} padding={"25px"}>
+            {subMenuItems.map((subCategory) => (
+              <Box width={"100%"} key={subCategory.subLabel} sx={{ color: "black" }}>
                 <Typography
-                  key={subItem}
-                  component="a"
-                  href={`#${subItem.toLowerCase().replace(/\s+/g, "-")}`}
+                  textTransform={"uppercase"}
                   sx={{
-                    display: "block",
-                    color: "black",
-                    padding: "3px 0",
-                    textDecoration: "none",
-                    cursor: "pointer",
-                    "&:hover": {
-                      color: "red",
-                    },
+                    fontWeight: "bold",
+                    marginBottom: "10px",
                     fontSize: "0.8rem",
                   }}
                 >
-                  {subItem}
+                  {subCategory.subLabel}
                 </Typography>
-              ))}
+                {subCategory.subItems.map((subItem) => (
+                  <Typography
+                    key={subItem}
+                    component="a"
+                    href={`#${subItem.toLowerCase().replace(/\s+/g, "-")}`}
+                    sx={{
+                      display: "block",
+                      color: "black",
+                      padding: "3px 0",
+                      textDecoration: "none",
+                      cursor: "pointer",
+                      "&:hover": {
+                        color: "red",
+                      },
+                      fontSize: "0.8rem",
+                    }}
+                  >
+                    {subItem}
+                  </Typography>
+                ))}
+              </Box>
+            ))}
+          </Box>
+          <Divider />
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "space-between",
+              alignItems: "center",
+              padding: "0px 20px",
+            }}
+          >
+            <Box
+              display="flex"
+              flexDirection={"row"}
+              justifyContent={"center"}
+              alignItems={"center"}
+              gap={3}
+            >
+              <CustomLink href="/contact" weight={400}>
+                Help
+              </CustomLink>
+              <CustomLink href="/contact" weight={400}>
+                Help & FAQs
+              </CustomLink>
+              <CustomLink href="/contact" weight={400}>
+                Contact Us
+              </CustomLink>
+              <CustomLink href="/contact" weight={400}>
+                A - Z
+              </CustomLink>
             </Box>
-          ))}
+            <Box>
+              <IconButton>
+                <FacebookOutlinedIcon
+                  sx={{ color: "#DC0714" }}
+                  fontSize="large"
+                />
+              </IconButton>
+              <IconButton>
+                <TwitterIcon sx={{ color: "#DC0714" }} fontSize="large" />
+              </IconButton>
+              <IconButton>
+                <InstagramIcon sx={{ color: "#DC0714" }} fontSize="large" />
+              </IconButton>
+              <IconButton>
+                <YouTubeIcon sx={{ color: "#DC0714" }} fontSize="large" />
+              </IconButton>
+              <IconButton>
+                <LinkedInIcon sx={{ color: "#DC0714" }} fontSize="large" />
+              </IconButton>
+            </Box>
+          </Box>
         </Box>
       </Fade>
     </Toolbar>
