@@ -1,4 +1,4 @@
-import { Toolbar, Box, Divider, Typography } from "@mui/material";
+import { Toolbar, Box, Divider, Typography, Fade } from "@mui/material";
 import NavItem from "../NavItem/NavItem";
 import { useState } from "react";
 import navBar from "./NavigationBarList";
@@ -70,8 +70,8 @@ export default function NavigationBarBig() {
           </Box>
         </Box>
       </Box>
-
-      {subMenuVisible && (
+      {/* Sub Menu */}
+      <Fade in={subMenuVisible}>
         <Box
           sx={{
             position: "absolute",
@@ -93,7 +93,11 @@ export default function NavigationBarBig() {
             <Box key={subCategory.subLabel} sx={{ color: "black" }}>
               <Typography
                 textTransform={"uppercase"}
-                sx={{ fontWeight: "bold", marginBottom: "10px", fontSize: "0.8rem" }}
+                sx={{
+                  fontWeight: "bold",
+                  marginBottom: "10px",
+                  fontSize: "0.8rem",
+                }}
               >
                 {subCategory.subLabel}
               </Typography>
@@ -111,7 +115,7 @@ export default function NavigationBarBig() {
                     "&:hover": {
                       color: "red",
                     },
-                    fontSize: "0.8rem"
+                    fontSize: "0.8rem",
                   }}
                 >
                   {subItem}
@@ -120,7 +124,7 @@ export default function NavigationBarBig() {
             </Box>
           ))}
         </Box>
-      )}
+      </Fade>
     </Toolbar>
   );
 }

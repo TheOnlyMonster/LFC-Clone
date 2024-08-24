@@ -116,6 +116,22 @@ const navBar = [
     ],
   },
   {
+    label: "Video",
+    subCategories: [
+      {
+        subLabel: "Video",
+        subItems: [
+          "LFCTV GO",
+          "Matches",
+          "Players",
+          "Browse",
+          "Playlists",
+          "Live",
+        ],
+      },
+    ],
+  },
+  {
     label: "More",
     subCategories: [
       {
