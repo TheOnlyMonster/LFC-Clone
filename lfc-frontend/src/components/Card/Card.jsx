@@ -16,6 +16,14 @@ export default function Card({
       color={color}
       target="_blank"
       rel="noopener noreferrer"
+      padding="10px"
+      sx={{
+        transition: "all 0.3s",
+        "&:hover": {
+          backgroundColor: "rgba(0, 0, 0, 0.1)",
+          "& .MuiBox-root.css-0": { transform: "translateY(-5px)", transition: "all 0.3s"},
+        },
+      }}
     >
       <Box
         sx={{

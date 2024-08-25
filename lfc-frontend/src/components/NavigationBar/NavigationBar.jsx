@@ -1,8 +1,26 @@
 import { Container, AppBar } from "@mui/material";
 import NavigationBarBig from "./NavigationBarBig";
 import NavigationBarSmall from "./NavigationBarSmall";
+import { useEffect, useState } from "react";
 
 function NavigationBar() {
+  const [marginTop, setMarginTop] = useState('20px');
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 0) {
+        setMarginTop('0px');
+      } else {
+        setMarginTop('20px');
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
   return (
     <AppBar
       position="sticky"
@@ -19,7 +37,7 @@ function NavigationBar() {
           top: "100%",
           left: "50%",
 					transform: "translateX(-50%)",
-					marginTop: "20px"
+					marginTop: marginTop,
         }}
       >
         <NavigationBarSmall />
