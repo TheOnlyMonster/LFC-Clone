@@ -35,6 +35,7 @@ export default function NavigationBarBig() {
         display: { xs: "none", lg: "flex" },
         flexDirection: "column",
         position: "relative",
+        boxShadow: subMenuVisible ? "10px 0px 1180px black" : "none",
       }}
     >
       <Box
@@ -93,7 +94,6 @@ export default function NavigationBarBig() {
             transform: "translateX(-50%)",
             backgroundColor: "white",
             width: "100%",
-            boxShadow: "0px 0px 40px rgba(0, 0, 0, 0.6)",
             display: "flex",
             justifyContent: "space-around",
             boxSizing: "border-box",
@@ -104,7 +104,11 @@ export default function NavigationBarBig() {
         >
           <Box display={"flex"} padding={"25px"}>
             {subMenuItems.map((subCategory) => (
-              <Box width={"100%"} key={subCategory.subLabel} sx={{ color: "black" }}>
+              <Box
+                width={"100%"}
+                key={subCategory.subLabel}
+                sx={{ color: "black" }}
+              >
                 <Typography
                   textTransform={"uppercase"}
                   sx={{
