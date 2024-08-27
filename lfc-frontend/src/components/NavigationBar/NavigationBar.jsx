@@ -37,7 +37,8 @@ function NavigationBar() {
           top: "100%",
           left: "50%",
 					transform: "translateX(-50%)",
-					marginTop: marginTop,
+          marginTop,
+          transition: "all 0.2s",
         }}
       >
         <NavigationBarSmall />

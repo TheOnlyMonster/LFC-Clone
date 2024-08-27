@@ -7,7 +7,7 @@ import {
   IconButton,
 } from "@mui/material";
 import NavItem from "../NavItem/NavItem";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import navBar from "./NavigationBarList";
 import CustomLink from "./CustomLink";
 import FacebookOutlinedIcon from "@mui/icons-material/FacebookOutlined";
@@ -15,9 +15,11 @@ import TwitterIcon from "@mui/icons-material/Twitter";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import YouTubeIcon from "@mui/icons-material/YouTube";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import { getFontStyle } from "../Utils/Utils";
 export default function NavigationBarBig() {
   const [subMenuVisible, setSubMenuVisible] = useState(false);
   const [subMenuItems, setSubMenuItems] = useState([]);
+  const [imageWidth, setImageWidth] = useState("35px");
 
   const handleOpenSubMenu = (subCategories) => {
     setSubMenuItems(subCategories);
@@ -27,6 +29,28 @@ export default function NavigationBarBig() {
   const handleCloseSubMenu = () => {
     setSubMenuVisible(false);
   };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 0) {
+        setImageWidth("25px");
+      } else {
+        setImageWidth("35px");
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (subMenuVisible || window.scrollY > 0) {
+      setImageWidth("25px");
+    } else setImageWidth("35px");
+  }, [subMenuVisible]);
 
   return (
     <Toolbar
@@ -47,17 +71,19 @@ export default function NavigationBarBig() {
         <Box>
           <img
             src="liverpoolfc_logo.webp"
-            width="25px"
+            width={imageWidth}
+            style={{ transition: "all 0.3s" }}
             alt="Liverpool FC Logo"
           />
         </Box>
-        <Box sx={{ display: "flex", alignItems: "center" }}>
+        <Box sx={{ display: "flex", alignItems: "center", gap: "20px" }}>
           {navBar.map((item) => (
             <Box
               key={item.label}
               onMouseEnter={() => handleOpenSubMenu(item.subCategories)}
               onMouseLeave={handleCloseSubMenu}
-              height={"200%"}
+              height={subMenuVisible ? "200%" : "fit-content"}
+              
               display={"flex"}
               alignItems={"center"}
               sx={{
@@ -73,7 +99,11 @@ export default function NavigationBarBig() {
           <Divider
             orientation="vertical"
             flexItem
-            sx={{ backgroundColor: "white" }}
+            sx={{
+              backgroundColor: "#ea6a72",
+              height: "25px",
+              alignSelf: "center",
+            }}
           />
           <Box padding={"10px"} boxSizing={"border-box"}>
             <img
@@ -104,18 +134,11 @@ export default function NavigationBarBig() {
         >
           <Box display={"flex"} padding={"25px"}>
             {subMenuItems.map((subCategory) => (
-              <Box
-                width={"100%"}
-                key={subCategory.subLabel}
-                sx={{ color: "black" }}
-              >
+              <Box width={"100%"} key={subCategory.subLabel}>
                 <Typography
                   textTransform={"uppercase"}
-                  sx={{
-                    fontWeight: "bold",
-                    marginBottom: "10px",
-                    fontSize: "0.8rem",
-                  }}
+                  sx={getFontStyle("black", 700, "11px")}
+                  marginBottom={"10px"}
                 >
                   {subCategory.subLabel}
                 </Typography>
