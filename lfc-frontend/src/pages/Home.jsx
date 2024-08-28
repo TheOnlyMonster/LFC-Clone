@@ -65,23 +65,24 @@ export default function Home() {
           color: "white",
         }}
       >
-        <Section
-          title="Have you seen?"
-          isWhite={false}
-          gridTempCol={{
-            xs: "1fr",
-            sm: "3fr 1fr",
-          }}
-        >
-          <Box>
+        <Section title="Have you seen?" isWhite={false}>
+          <Box position={"relative"} >
             <Card {...card} color="black" />
-          </Box>
-          <Box>
-            {Array(3)
-              .fill(card)
-              .map((card, index) => (
-                <Card key={index} {...card} color="black" />
-              ))}
+            <Box
+              position={"absolute"}
+              right={"0"}
+              bottom={"0"}
+              padding={"20px"}
+              sx={{ transform: "translateY(10px)", backgroundColor: "white" }}
+              width={"300px"}
+              zIndex={"10"}
+            >
+              {Array(3)
+                .fill(card)
+                .map((card, index) => (
+                  <Card key={index} {...card} color="black" />
+                ))}
+            </Box>
           </Box>
         </Section>
       </Container>
