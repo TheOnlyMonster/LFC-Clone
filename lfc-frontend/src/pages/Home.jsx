@@ -4,25 +4,28 @@ import MatchCard from "../components/MatchCard/MatchCard";
 import nextMatchesApi from "../api/nextMatchesApi";
 import CardSection from "../components/CardSection/CardSection";
 import Sponsors from "../components/Sponsors/Sponsors";
-const cards = [
-  {
-    category: "Liverpool FC",
-    image: "card_photo.webp",
-    description:
-      "Liverpool Football Club is a professional football club in Liverpool, England, that competes in the Premier League, the top tier of English football.",
-    link: "https://www.liverpoolfc.com/",
-    date: "August 25, 2024 13:48:00",
-    color: "white",
-  },
-];
+import Card from "../components/Card/Card";
+const card = {
+  category: "Liverpool FC",
+  image: "card_photo.webp",
+  description:
+    "Liverpool Football Club is a professional football club in Liverpool, England, that competes in the Premier League, the top tier of English football.",
+  link: "https://www.liverpoolfc.com/",
+  date: "August 25, 2024 13:48:00",
+  color: "white",
+};
 export default function Home() {
   return (
     <Box>
       <CardSection
-        cards={Array(6).fill(cards[0])}
+        cards={Array(6).fill(card)}
         title="Headlines"
         link={{ title: "All News", href: "news" }}
         bgColor="#dc0714"
+        gridTempCol={{
+          xs: "1fr",
+          sm: "repeat(3, 1fr)",
+        }}
       />
       <Container
         maxWidth="lg"
@@ -35,6 +38,10 @@ export default function Home() {
           title="Fixtures"
           link={{ title: "All fixtures", href: "fixtures" }}
           isWhite={false}
+          gridTempCol={{
+            xs: "1fr",
+            sm: "repeat(3, 1fr)",
+          }}
         >
           {nextMatchesApi.map((match, index) => (
             <MatchCard
@@ -51,19 +58,53 @@ export default function Home() {
           ))}
         </Section>
       </Container>
+      <Container
+        maxWidth="lg"
+        sx={{
+          padding: "100px 30px 90px  !important",
+          color: "white",
+        }}
+      >
+        <Section
+          title="Have you seen?"
+          isWhite={false}
+          gridTempCol={{
+            xs: "1fr",
+            sm: "3fr 1fr",
+          }}
+        >
+          <Box>
+            <Card {...card} color="black" />
+          </Box>
+          <Box>
+            {Array(3)
+              .fill(card)
+              .map((card, index) => (
+                <Card key={index} {...card} color="black" />
+              ))}
+          </Box>
+        </Section>
+      </Container>
       <CardSection
         title="LFC Women"
         link={{ title: "More News", href: "news?categoryId=196" }}
         bgColor="#dc0714"
-        
-        cards={Array(3).fill(cards[0])}
+        cards={Array(3).fill(card)}
+        gridTempCol={{
+          xs: "1fr",
+          sm: "repeat(3, 1fr)",
+        }}
       />
       <CardSection
         title="CLUB AND COMMUNITY"
         link={{ title: "More", href: "news?categoryId=181" }}
         bgColor="#f6f6f6"
         isWhite={false}
-        cards={Array(3).fill({ ...cards[0], color: "black" })}
+        cards={Array(3).fill({ ...card, color: "black" })}
+        gridTempCol={{
+          xs: "1fr",
+          sm: "repeat(3, 1fr)",
+        }}
       />
       <Sponsors />
     </Box>

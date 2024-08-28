@@ -1,7 +1,14 @@
 import { Box, Container } from "@mui/material";
 import Section from "../Section/Section";
 import Card from "../Card/Card";
-export default function CardSection({ cards, title, link, bgColor, isWhite=true }) {
+export default function CardSection({
+  cards,
+  title,
+  link,
+  bgColor,
+  gridTempCol,
+  isWhite = true,
+}) {
   return (
     <Box sx={{ backgroundColor: bgColor }}>
       <Container
@@ -11,11 +18,15 @@ export default function CardSection({ cards, title, link, bgColor, isWhite=true 
           color: "white",
         }}
       >
-        <Section title={title}  link={link} isWhite={isWhite}>
+        <Section
+          title={title}
+          link={link}
+          isWhite={isWhite}
+          gridTempCol={gridTempCol}
+        >
           {cards.map((card, index) => (
             <Card
               key={index}
-              
               category={card.category}
               image={card.image}
               description={card.description}

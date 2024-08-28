@@ -2,9 +2,9 @@ import { Box, Typography, Button } from "@mui/material";
 import PropTypes from "prop-types";
 import { getFontStyle } from "../Utils/Utils";
 import ArrowForwardIosRoundedIcon from '@mui/icons-material/ArrowForwardIosRounded';
-export default function Section({ title, children, link, isWhite = true }) {
+export default function Section({ title, children, link, gridTempCol, isWhite = true }) {
   return (
-    <>
+    <Box>
       <Box display={"flex"} justifyContent={"space-between"} padding={"10px"}>
         <Typography
           sx={{
@@ -45,15 +45,13 @@ export default function Section({ title, children, link, isWhite = true }) {
       </Box>
       <Box
         display="grid"
-        gridTemplateColumns={{
-          xs: "1fr",
-          sm: "repeat(3, 1fr)",
-        }}
+        gridTemplateColumns={gridTempCol}
         gap={2}
+        position={"relative"}
       >
         {children}
       </Box>
-    </>
+    </Box>
   );
 }
 Section.propTypes = {
