@@ -9,7 +9,65 @@ export default function Card({
   link,
   date,
   color,
+  reverse = false,
 }) {
+  let content;
+  if (reverse) {
+    content = (
+      <>
+        <Box>
+          <Typography sx={getFontStyle(color, "300", "9px")}>
+            {formatDistanceToNow(new Date(date), { addSuffix: true })}
+          </Typography>
+          <Typography
+            marginTop={"10px"}
+            sx={getFontStyle(color, "bold", "12px")}
+            display={"inline-block"}
+          >
+            {category}
+          </Typography>
+          <Typography
+            marginLeft={"8px"}
+            variant="body2"
+            gutterBottom
+            display={"inline"}
+          >
+            {description}
+          </Typography>
+        </Box>
+        <img src={image} alt={category} width="100%" />
+      </>
+    );
+  } else {
+    content = (
+      <>
+        <img src={image} alt={category} width="100%" />
+        <Box>
+          <Typography sx={getFontStyle(color, "300", "9px")}>
+            {formatDistanceToNow(new Date(date), { addSuffix: true })}
+          </Typography>
+          <Typography
+            marginTop={"10px"}
+            sx={getFontStyle(color, "bold", "12px")}
+            display={"inline-block"}
+          >
+            {category}
+          </Typography>
+          <Typography
+            marginLeft={"8px"}
+            variant="body2"
+            gutterBottom
+            display={"inline"}
+          >
+            {description}
+          </Typography>
+          <Divider
+            sx={{ backgroundColor: color, opacity: 0.5, marginTop: "20px" }}
+          />
+        </Box>
+      </>
+    );
+  }
   return (
     <Link
       href={link}
@@ -26,26 +84,7 @@ export default function Card({
           gap: "30px",
         }}
       >
-        <img src={image} alt={category} width="100%" />
-        <Box>
-          <Typography sx={getFontStyle(color, "300", "9px")}>
-            {formatDistanceToNow(new Date(date), { addSuffix: true })}
-          </Typography>
-          <Typography
-            marginTop={"10px"}
-            sx={getFontStyle(color, "bold", "12px")}
-            display={"inline-block"}
-            
-          >
-            {category}
-          </Typography>
-          <Typography marginLeft={"8px"} variant="body2" gutterBottom display={"inline"}>
-            {description}
-          </Typography>
-          <Divider
-            sx={{ backgroundColor: color, opacity: 0.5, marginTop: "20px" }}
-          />
-        </Box>
+        {content}
       </Box>
     </Link>
   );

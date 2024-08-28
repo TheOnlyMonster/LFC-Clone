@@ -5,6 +5,7 @@ import nextMatchesApi from "../api/nextMatchesApi";
 import CardSection from "../components/CardSection/CardSection";
 import Sponsors from "../components/Sponsors/Sponsors";
 import Card from "../components/Card/Card";
+import { useEffect, useState } from "react";
 const card = {
   category: "Liverpool FC",
   image: "card_photo.webp",
@@ -15,6 +16,22 @@ const card = {
   color: "white",
 };
 export default function Home() {
+  const [topPosition, setTopPosition] = useState(1000);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      setTopPosition(Math.min(0, 1000 - scrollY));
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  
   return (
     <Box>
       <CardSection
@@ -66,12 +83,12 @@ export default function Home() {
         }}
       >
         <Section title="Have you seen?" isWhite={false}>
-          <Box position={"relative"} >
-            <Card {...card} color="black" />
+          <Box position={"relative"}>
+            <Card {...card} color="black" reverse={true} />
             <Box
               position={"absolute"}
               right={"0"}
-              bottom={"0"}
+              top={`${topPosition}px`}
               padding={"20px"}
               sx={{ transform: "translateY(10px)", backgroundColor: "white" }}
               width={"300px"}
