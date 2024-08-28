@@ -76,14 +76,14 @@ export default function NavigationBarBig() {
             alt="Liverpool FC Logo"
           />
         </Box>
-        <Box sx={{ display: "flex", alignItems: "center", gap: "20px" }}>
+        <Box sx={{ display: "flex", alignItems: "center" }}>
           {navBar.map((item) => (
             <Box
               key={item.label}
               onMouseEnter={() => handleOpenSubMenu(item.subCategories)}
               onMouseLeave={handleCloseSubMenu}
               height={subMenuVisible ? "200%" : "fit-content"}
-              
+              padding={"0px 16px"}
               display={"flex"}
               alignItems={"center"}
               sx={{

@@ -1,6 +1,7 @@
 import { Box, Link, Typography, Divider } from "@mui/material";
 import { formatDistanceToNow } from "date-fns";
 import PropTypes from "prop-types";
+import { getFontStyle } from "../Utils/Utils";
 export default function Card({
   category,
   image,
@@ -17,13 +18,6 @@ export default function Card({
       target="_blank"
       rel="noopener noreferrer"
       padding="10px"
-      sx={{
-        transition: "all 0.3s",
-        "&:hover": {
-          backgroundColor: "rgba(0, 0, 0, 0.1)",
-          "& .MuiBox-root.css-0": { transform: "translateY(-5px)", transition: "all 0.3s"},
-        },
-      }}
     >
       <Box
         sx={{
@@ -34,25 +28,18 @@ export default function Card({
       >
         <img src={image} alt={category} width="100%" />
         <Box>
-          <Typography
-            variant="caption"
-            fontSize={"0.6rem"}
-            textTransform={"uppercase"}
-            gutterBottom
-          >
+          <Typography sx={getFontStyle(color, "300", "9px")}>
             {formatDistanceToNow(new Date(date), { addSuffix: true })}
           </Typography>
           <Typography
-            textTransform={"uppercase"}
-            variant="button"
-            display={"block"}
-            fontSize={"13px"}
-            fontWeight={"bold"}
-            gutterBottom
+            marginTop={"10px"}
+            sx={getFontStyle(color, "bold", "12px")}
+            display={"inline-block"}
+            
           >
             {category}
           </Typography>
-          <Typography variant="body2" gutterBottom>
+          <Typography marginLeft={"8px"} variant="body2" gutterBottom display={"inline"}>
             {description}
           </Typography>
           <Divider

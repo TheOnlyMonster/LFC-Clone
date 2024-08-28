@@ -34,6 +34,7 @@ export default function Home() {
         <Section
           title="Fixtures"
           link={{ title: "All fixtures", href: "fixtures" }}
+          isWhite={false}
         >
           {nextMatchesApi.map((match, index) => (
             <MatchCard
@@ -54,12 +55,14 @@ export default function Home() {
         title="LFC Women"
         link={{ title: "More News", href: "news?categoryId=196" }}
         bgColor="#dc0714"
+        
         cards={Array(3).fill(cards[0])}
       />
       <CardSection
         title="CLUB AND COMMUNITY"
         link={{ title: "More", href: "news?categoryId=181" }}
         bgColor="#f6f6f6"
+        isWhite={false}
         cards={Array(3).fill({ ...cards[0], color: "black" })}
       />
       <Sponsors />
