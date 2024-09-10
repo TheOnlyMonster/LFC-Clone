@@ -5,9 +5,10 @@ import {
   Typography,
   Fade,
   IconButton,
+  MenuItem,
 } from "@mui/material";
 import NavItem from "../NavItem/NavItem";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import navBar from "./NavigationBarList";
 import CustomLink from "./CustomLink";
 import FacebookOutlinedIcon from "@mui/icons-material/FacebookOutlined";
@@ -15,12 +16,27 @@ import TwitterIcon from "@mui/icons-material/Twitter";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import YouTubeIcon from "@mui/icons-material/YouTube";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
+import KeyboardArrowDownOutlinedIcon from "@mui/icons-material/KeyboardArrowDownOutlined";
+import LanguageIcon from "@mui/icons-material/Language";
 import { getFontStyle } from "../Utils/Utils";
+const languageMenu = [
+  "Deutsch",
+  "English",
+  "Español",
+  "Français",
+  "Italiano",
+  "日本語",
+  "한국어",
+  "Português",
+  "简体中文",
+];
 export default function NavigationBarBig() {
   const [subMenuVisible, setSubMenuVisible] = useState(false);
+  const [languageMenuVisible, setLanguageMenuVisible] = useState(false);
   const [subMenuItems, setSubMenuItems] = useState([]);
   const [imageWidth, setImageWidth] = useState("35px");
-
+  const langBoxRef = useRef(null);
   const handleOpenSubMenu = (subCategories) => {
     setSubMenuItems(subCategories);
     setSubMenuVisible(true);
@@ -29,7 +45,7 @@ export default function NavigationBarBig() {
   const handleCloseSubMenu = () => {
     setSubMenuVisible(false);
   };
-
+  
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 0) {
@@ -38,13 +54,19 @@ export default function NavigationBarBig() {
         setImageWidth("35px");
       }
     };
-
+    const handleClickOutside = (event) => {
+      if (langBoxRef.current && !langBoxRef.current.contains(event.target)) {
+        setLanguageMenuVisible(false);
+      }
+    };
     window.addEventListener("scroll", handleScroll);
-
+    document.addEventListener('mousedown', handleClickOutside);
     return () => {
       window.removeEventListener("scroll", handleScroll);
+      document.removeEventListener('mousedown', handleClickOutside);
     };
   }, []);
+
 
   useEffect(() => {
     if (subMenuVisible || window.scrollY > 0) {
@@ -59,7 +81,10 @@ export default function NavigationBarBig() {
         display: { xs: "none", lg: "flex" },
         flexDirection: "column",
         position: "relative",
-        boxShadow: subMenuVisible ? "10px 0px 1180px black" : "none",
+        boxShadow:
+          subMenuVisible || languageMenuVisible
+            ? "10px 0px 1180px black"
+            : "none",
       }}
     >
       <Box
@@ -116,6 +141,7 @@ export default function NavigationBarBig() {
               },
             }}
           >
+            <PersonOutlineOutlinedIcon sx={{ margin: "10px 5px" }} />
             <NavItem label={"Join"} />
           </Box>
           <Box
@@ -140,17 +166,87 @@ export default function NavigationBarBig() {
               alignSelf: "center",
             }}
           />
-          <Box padding={"0px 0px 0px 26px"} boxSizing={"border-box"}>
-            <img
-              src="standard-chartered-logo.png"
-              width="80px"
-              alt="Standard Chartered Logo"
+          <Box position={"relative"} display={"inline-flex"}>
+            <Box
+              onClick={() => setLanguageMenuVisible(!languageMenuVisible)}
+              height={subMenuVisible ? "200%" : "fit-content"}
+              padding={"0px 26px"}
+              display={"flex"}
+              position={"relative"}
+              alignItems={"center"}
+              sx={{
+                transition: "all 0.5s",
+                "&:hover": {
+                  color: "#fbd3bb !important",
+                },
+              }}
+            >
+              <LanguageIcon sx={{ margin: "10px 5px", width: "20px" }} />
+              <NavItem label={"EN"} />
+              <KeyboardArrowDownOutlinedIcon sx={{ color: "#fbd3bb" }} />
+            </Box>
+            <Divider
+              orientation="vertical"
+              flexItem
+              sx={{
+                backgroundColor: "#ea6a72",
+                height: "25px",
+                alignSelf: "center",
+              }}
             />
+            <Box padding={"0px 0px 0px 26px"} boxSizing={"border-box"}>
+              <img
+                src="standard-chartered-logo.png"
+                width="80px"
+                alt="Standard Chartered Logo"
+              />
+            </Box>
+            {/* Language Sub Menu */}
+            <Fade in={languageMenuVisible}>
+              <Box
+                ref={langBoxRef}
+                sx={{
+                  position: "absolute",
+                  top: "132%",
+                  left: "50%",
+                  transform: "translateX(-50%)",
+                  backgroundColor: "white",
+                  width: "133%",
+                  display: "flex",
+                  justifyContent: "space-around",
+                  boxSizing: "border-box",
+                  flexDirection: "column",
+                  paddingTop: "20px",
+                  paddingLeft: "10px",
+                }}
+              >
+                  <Typography
+                    textTransform={"uppercase"}
+                  sx={{...getFontStyle("black", 700, "14px"), padding: "10px 15px"}}
+                  >
+                    Select Your Language
+                  </Typography>
+                <Box
+                  display={"grid"}
+                  gridTemplateRows={"repeat(6, min-content)"}
+                  gridAutoFlow={"column"}
+                  columnGap={"20px"}
+                >
+                  {languageMenu.map((language, index) => (
+                    <MenuItem key={index} sx={{ padding: "10px 15px" }}>
+                      <Typography sx={getFontStyle("black", 400, "14px")}>
+                        {language}
+                      </Typography>
+                    </MenuItem>
+                  ))}
+                </Box>
+              </Box>
+            </Fade>
           </Box>
         </Box>
       </Box>
       {/* Sub Menu */}
-      <Fade in={subMenuVisible}>
+      <Fade in={subMenuVisible && !languageMenuVisible}>
         <Box
           sx={{
             position: "absolute",
