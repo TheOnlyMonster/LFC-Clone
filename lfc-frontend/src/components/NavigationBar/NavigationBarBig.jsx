@@ -83,7 +83,7 @@ export default function NavigationBarBig() {
               onMouseEnter={() => handleOpenSubMenu(item.subCategories)}
               onMouseLeave={handleCloseSubMenu}
               height={subMenuVisible ? "200%" : "fit-content"}
-              padding={"0px 16px"}
+              padding={"0px 26px 0px 0px"}
               display={"flex"}
               alignItems={"center"}
               sx={{
@@ -105,7 +105,42 @@ export default function NavigationBarBig() {
               alignSelf: "center",
             }}
           />
-          <Box padding={"10px"} boxSizing={"border-box"}>
+          <Box
+            padding={"0px 26px"}
+            display={"flex"}
+            alignItems={"center"}
+            sx={{
+              transition: "all 0.5s",
+              "&:hover": {
+                color: "#fbd3bb !important",
+              },
+            }}
+          >
+            <NavItem label={"Join"} />
+          </Box>
+          <Box
+            padding={"0px 26px 0px 0px"}
+            display={"flex"}
+            alignItems={"center"}
+            sx={{
+              transition: "all 0.5s",
+              "&:hover": {
+                color: "#fbd3bb !important",
+              },
+            }}
+          >
+            <NavItem label={"Login"} />
+          </Box>
+          <Divider
+            orientation="vertical"
+            flexItem
+            sx={{
+              backgroundColor: "#ea6a72",
+              height: "25px",
+              alignSelf: "center",
+            }}
+          />
+          <Box padding={"0px 0px 0px 26px"} boxSizing={"border-box"}>
             <img
               src="standard-chartered-logo.png"
               width="80px"
@@ -137,7 +172,7 @@ export default function NavigationBarBig() {
               <Box width={"100%"} key={subCategory.subLabel}>
                 <Typography
                   textTransform={"uppercase"}
-                  sx={getFontStyle("black", 700, "11px")}
+                  sx={getFontStyle("black", 700, "14px")}
                   marginBottom={"10px"}
                 >
                   {subCategory.subLabel}

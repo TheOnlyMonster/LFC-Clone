@@ -45,7 +45,7 @@ export default function Home() {
         }}
       />
       <Container
-        maxWidth="lg"
+        maxWidth="xl"
         sx={{
           padding: "100px 30px 90px  !important",
           color: "black",
@@ -76,7 +76,7 @@ export default function Home() {
         </Section>
       </Container>
       <Container
-        maxWidth="lg"
+        maxWidth="xl"
         sx={{
           padding: "100px 30px 90px  !important",
           color: "white",

@@ -4,7 +4,7 @@ import { getFontStyle } from "../Utils/Utils";
 
 function NavItem({ label }) {
   return (
-    <Typography sx={getFontStyle("white", 700, "11px")}>
+    <Typography sx={getFontStyle("white", 700, "14px")}>
       {label}
     </Typography>
   );

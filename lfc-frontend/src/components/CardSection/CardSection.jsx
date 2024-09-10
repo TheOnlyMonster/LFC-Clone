@@ -12,7 +12,7 @@ export default function CardSection({
   return (
     <Box sx={{ backgroundColor: bgColor }}>
       <Container
-        maxWidth="lg"
+        maxWidth="xl"
         sx={{
           padding: "100px 30px 90px  !important",
           color: "white",

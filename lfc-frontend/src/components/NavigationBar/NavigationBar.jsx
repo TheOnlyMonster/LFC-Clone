@@ -28,7 +28,7 @@ function NavigationBar() {
       elevation={0}
     >
       <Container
-        maxWidth="lg"
+        maxWidth="xl"
         sx={{
           backgroundColor: "#dc0714",
           padding: "0px 0px !important",
