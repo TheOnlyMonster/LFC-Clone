@@ -9,19 +9,17 @@ export default function Card({
   link,
   date,
   color,
-  reverse = false,
+  reverse = null,
 }) {
   let content;
   if (reverse) {
     content = (
       <>
         <Box>
-          <Typography sx={getFontStyle(color, "300", "9px")}>
-            {formatDistanceToNow(new Date(date), { addSuffix: true })}
-          </Typography>
+          
           <Typography
             marginTop={"10px"}
-            sx={getFontStyle(color, "bold", "12px")}
+            sx={getFontStyle(color, "bold", reverse.fs1)}
             display={"inline-block"}
           >
             {category}
@@ -30,9 +28,13 @@ export default function Card({
             marginLeft={"8px"}
             variant="body2"
             gutterBottom
+            sx={getFontStyle(color, "unset", reverse.fs2, "unset")}
             display={"inline"}
           >
             {description}
+          </Typography>
+          <Typography padding={"10px 0px"} sx={getFontStyle(color, "300", "12px")}>
+            {formatDistanceToNow(new Date(date), { addSuffix: true })}
           </Typography>
         </Box>
         <img src={image} alt={category} width="100%" />
@@ -76,12 +78,15 @@ export default function Card({
       target="_blank"
       rel="noopener noreferrer"
       padding="10px"
+      display={"block"}
+      height={"100%"}
     >
       <Box
         sx={{
           display: "flex",
           flexDirection: "column",
-          gap: "30px",
+          justifyContent: "space-around",
+          height: "100%",
         }}
       >
         {content}

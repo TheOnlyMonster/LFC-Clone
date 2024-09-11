@@ -35,7 +35,7 @@ export default function NavigationBarBig() {
   const [subMenuVisible, setSubMenuVisible] = useState(false);
   const [languageMenuVisible, setLanguageMenuVisible] = useState(false);
   const [subMenuItems, setSubMenuItems] = useState([]);
-  const [imageWidth, setImageWidth] = useState("35px");
+  const [imageWidth, setImageWidth] = useState("45px");
   const langBoxRef = useRef(null);
   const handleOpenSubMenu = (subCategories) => {
     setSubMenuItems(subCategories);
@@ -48,10 +48,10 @@ export default function NavigationBarBig() {
   
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 0) {
+      if (window.scrollY > 110) {
         setImageWidth("25px");
       } else {
-        setImageWidth("35px");
+        setImageWidth("45px");
       }
     };
     const handleClickOutside = (event) => {
@@ -71,7 +71,7 @@ export default function NavigationBarBig() {
   useEffect(() => {
     if (subMenuVisible || window.scrollY > 0) {
       setImageWidth("25px");
-    } else setImageWidth("35px");
+    } else setImageWidth("45px");
   }, [subMenuVisible]);
 
   return (

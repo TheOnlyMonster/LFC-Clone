@@ -1,8 +1,17 @@
 import { Box, Typography, Button } from "@mui/material";
 import PropTypes from "prop-types";
 import { getFontStyle } from "../Utils/Utils";
-import ArrowForwardIosRoundedIcon from '@mui/icons-material/ArrowForwardIosRounded';
-export default function Section({ title, children, link, gridTempCol, isWhite = true }) {
+import ArrowForwardIosRoundedIcon from "@mui/icons-material/ArrowForwardIosRounded";
+export default function Section({
+  title,
+  children,
+  link,
+  gridTempCol,
+  isWhite = true,
+  ele = null,
+  overflowX = "scroll",
+  overflowY = "hidden",
+}) {
   return (
     <Box>
       <Box display={"flex"} justifyContent={"space-between"} padding={"10px"}>
@@ -35,19 +44,45 @@ export default function Section({ title, children, link, gridTempCol, isWhite = 
           {title}
         </Typography>
 
-        {link && <Button
-          href={link.href}
-          sx={{ ...getFontStyle(isWhite ? "white" : "black", "bold", "12px") }}
-        >
-          {link.title}
-          <ArrowForwardIosRoundedIcon fontSize="5px" />
-        </Button>}
+        {link && (
+          <Button
+            href={link.href}
+            sx={{
+              ...getFontStyle(isWhite ? "white" : "black", "bold", "12px"),
+            }}
+          >
+            {link.title}
+            <ArrowForwardIosRoundedIcon fontSize="5px" />
+          </Button>
+        )}
       </Box>
+      {ele}
       <Box
         display="grid"
         gridTemplateColumns={gridTempCol}
+        sx={{
+          overflowX: overflowX,
+          overflowY: overflowY,
+          "&::-webkit-scrollbar": {
+            height: "8px",
+          },
+          "&::-webkit-scrollbar-thumb": {
+            backgroundColor: "#888",
+            borderRadius: "10px",
+            border: "2px solid transparent",
+            backgroundClip: "content-box",
+          },
+          "&::-webkit-scrollbar-thumb:hover": {
+            backgroundColor: "#555",
+          },
+          "&::-webkit-scrollbar-track": {
+            backgroundColor: "transparent",
+            borderRadius: "5px",
+          },
+        }}
         gap={2}
         position={"relative"}
+        paddingTop={"15px"}
       >
         {children}
       </Box>
