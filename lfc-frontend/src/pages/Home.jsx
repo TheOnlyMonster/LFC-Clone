@@ -68,7 +68,7 @@ export default function Home() {
           title="Fixtures"
           link={{ title: "All fixtures", href: "fixtures" }}
           isWhite={false}
-          gridTempCol={{ xs: "repeat(3, 90%)", sm: "repeat(3, 1fr)" }} 
+          gridTempCol={{ xs: "repeat(3, 90%)", sm: "repeat(3, 1fr)" }}
         >
           {nextMatchesApi.map((match, index) => (
             <MatchCard
@@ -86,7 +86,7 @@ export default function Home() {
         </Section>
       </Container>
       {/* Adv 1 */}
-      <Box sx={{ backgroundColor: "#f6f6f6", overflowX: "scroll" }} >
+      <Box sx={{ backgroundColor: "#f6f6f6", overflowX: "scroll" }}>
         <Container
           maxWidth="xl"
           sx={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}
@@ -195,7 +195,7 @@ export default function Home() {
         link={{ title: "More News", href: "news?categoryId=196" }}
         bgColor="#dc0714"
         cards={Array(3).fill(card)}
-        gridTempCol={{ xs: "repeat(3, 90%)", sm: "repeat(3, 1fr)" }} 
+        gridTempCol={{ xs: "repeat(3, 90%)", sm: "repeat(3, 1fr)" }}
       />
       {/* Adv 3 */}
       <Box sx={{ backgroundColor: "#f6f6f6", overflowX: "scroll" }}>
@@ -214,7 +214,13 @@ export default function Home() {
           color: "white",
         }}
       >
-        <Section overflowX="visible" overflowY="visible" title="Have you seen?" isWhite={false}>
+        <Section
+          overflowX="visible"
+          overflowY="visible"
+          title="Have you seen?"
+          isWhite={false}
+          display="{{ xs: 'block', sm: 'grid' }}"
+        >
           <Box position={"relative"}>
             <Card
               {...card}
@@ -222,18 +228,29 @@ export default function Home() {
               reverse={{ fs1: "20px", fs2: "36px" }}
             />
             <Box
-              position={"absolute"}
+              position={{ xs: "static", sm: "absolute" }}
               right={"0"}
               top={`${topPosition}px`}
               padding={"20px"}
-              sx={{ transform: "translateY(10px)", backgroundColor: "white" }}
-              width={"300px"}
+              sx={{
+                transform: { sm: "translateY(10px)" },
+                backgroundColor: "white",
+                overflowX: { xs: "scroll", sm: "hidden" },
+              }}
+              display={{ xs: "grid", sm: "block" }}
+              gridTemplateColumns={"repeat(3, 90%)"}
+              width={{ xs: "inherit", sm: "300px" }}
               zIndex={"10"}
             >
               {Array(3)
                 .fill(card)
                 .map((card, index) => (
-                  <Card key={index} {...card} color="black" />
+                  <Card
+                    key={index}
+                    {...card}
+                    color="black"
+                    hideInSmallScreen={true}
+                  />
                 ))}
             </Box>
           </Box>
@@ -274,11 +291,16 @@ export default function Home() {
         bgColor="#f6f6f6"
         isWhite={false}
         cards={Array(3).fill({ ...card, color: "black" })}
-        gridTempCol={{ xs: "repeat(3, 90%)", sm: "repeat(3, 1fr)" }} 
+        gridTempCol={{ xs: "repeat(3, 90%)", sm: "repeat(3, 1fr)" }}
       />
-      <Container
-        maxWidth="xl" >
-        <Box display={"flex"} justifyContent={"center"} gap={"25px"} padding={"25px"} flexWrap={{xs: "wrap" , md: "unset"}}>
+      <Container maxWidth="xl">
+        <Box
+          display={"flex"}
+          justifyContent={"center"}
+          gap={"25px"}
+          padding={"25px"}
+          flexWrap={{ xs: "wrap", md: "unset" }}
+        >
           <img src="memorial-1989-desktop.svg" alt="memorial" width={"100%"} />
           <img src="memorial-1985-desktop.svg" alt="memorial" width={"100%"} />
         </Box>

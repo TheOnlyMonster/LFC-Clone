@@ -9,6 +9,7 @@ export default function Card({
   link,
   date,
   color,
+  hideInSmallScreen = false,
   reverse = null,
 }) {
   let content;
@@ -16,7 +17,6 @@ export default function Card({
     content = (
       <>
         <Box>
-          
           <Typography
             marginTop={"10px"}
             sx={getFontStyle(color, "bold", reverse.fs1)}
@@ -33,7 +33,10 @@ export default function Card({
           >
             {description}
           </Typography>
-          <Typography padding={"10px 0px"} sx={getFontStyle(color, "300", "12px")}>
+          <Typography
+            padding={"10px 0px"}
+            sx={getFontStyle(color, "300", "12px")}
+          >
             {formatDistanceToNow(new Date(date), { addSuffix: true })}
           </Typography>
         </Box>
@@ -43,7 +46,13 @@ export default function Card({
   } else {
     content = (
       <>
-        <img src={image} alt={category} width="100%" />
+        <Box
+          sx={{
+            display: { xs: hideInSmallScreen ? "none" : "block", sm: "block" },
+          }}
+        >
+          <img src={image} alt={category} width="100%" />
+        </Box>
         <Box>
           <Typography sx={getFontStyle(color, "300", "9px")}>
             {formatDistanceToNow(new Date(date), { addSuffix: true })}

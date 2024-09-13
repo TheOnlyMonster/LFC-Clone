@@ -11,6 +11,7 @@ export default function Section({
   ele = null,
   overflowX = "scroll",
   overflowY = "hidden",
+  display = "grid",
 }) {
   return (
     <Box>
@@ -58,27 +59,11 @@ export default function Section({
       </Box>
       {ele}
       <Box
-        display="grid"
+        display={display}
         gridTemplateColumns={gridTempCol}
         sx={{
           overflowX: overflowX,
           overflowY: overflowY,
-          "&::-webkit-scrollbar": {
-            height: "8px",
-          },
-          "&::-webkit-scrollbar-thumb": {
-            backgroundColor: "#888",
-            borderRadius: "10px",
-            border: "2px solid transparent",
-            backgroundClip: "content-box",
-          },
-          "&::-webkit-scrollbar-thumb:hover": {
-            backgroundColor: "#555",
-          },
-          "&::-webkit-scrollbar-track": {
-            backgroundColor: "transparent",
-            borderRadius: "5px",
-          },
         }}
         gap={2}
         position={"relative"}
