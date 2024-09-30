@@ -20,6 +20,7 @@ import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined
 import KeyboardArrowDownOutlinedIcon from "@mui/icons-material/KeyboardArrowDownOutlined";
 import LanguageIcon from "@mui/icons-material/Language";
 import { getFontStyle } from "../Utils/Utils";
+import { Link } from "react-router-dom";
 const languageMenu = [
   "Deutsch",
   "English",
@@ -45,7 +46,7 @@ export default function NavigationBarBig() {
   const handleCloseSubMenu = () => {
     setSubMenuVisible(false);
   };
-  
+
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 110) {
@@ -60,13 +61,12 @@ export default function NavigationBarBig() {
       }
     };
     window.addEventListener("scroll", handleScroll);
-    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
     return () => {
       window.removeEventListener("scroll", handleScroll);
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
-
 
   useEffect(() => {
     if (subMenuVisible || window.scrollY > 0) {
@@ -142,7 +142,7 @@ export default function NavigationBarBig() {
             }}
           >
             <PersonOutlineOutlinedIcon sx={{ margin: "10px 5px" }} />
-            <NavItem label={"Join"} />
+            <NavItem label={"Join"} to={"/auth/signup"} />
           </Box>
           <Box
             padding={"0px 26px 0px 0px"}
@@ -155,7 +155,7 @@ export default function NavigationBarBig() {
               },
             }}
           >
-            <NavItem label={"Login"} />
+            <NavItem label={"Login"} to={"auth/login"} />
           </Box>
           <Divider
             orientation="vertical"
@@ -220,12 +220,15 @@ export default function NavigationBarBig() {
                   paddingLeft: "10px",
                 }}
               >
-                  <Typography
-                    textTransform={"uppercase"}
-                  sx={{...getFontStyle("black", 700, "14px"), padding: "10px 15px"}}
-                  >
-                    Select Your Language
-                  </Typography>
+                <Typography
+                  textTransform={"uppercase"}
+                  sx={{
+                    ...getFontStyle("black", 700, "14px"),
+                    padding: "10px 15px",
+                  }}
+                >
+                  Select Your Language
+                </Typography>
                 <Box
                   display={"grid"}
                   gridTemplateRows={"repeat(6, min-content)"}
@@ -276,8 +279,8 @@ export default function NavigationBarBig() {
                 {subCategory.subItems.map((subItem) => (
                   <Typography
                     key={subItem}
-                    component="a"
-                    href={`#${subItem.toLowerCase().replace(/\s+/g, "-")}`}
+                    component={Link}
+                    to={`${subItem.toLowerCase().replace(/\s+/g, "-")}`}
                     sx={{
                       display: "block",
                       color: "black",

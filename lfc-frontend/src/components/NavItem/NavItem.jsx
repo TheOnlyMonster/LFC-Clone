@@ -1,12 +1,14 @@
 import { Typography } from "@mui/material";
 import PropTypes from "prop-types";
 import { getFontStyle } from "../Utils/Utils";
-
-function NavItem({ label }) {
+import { Link } from "react-router-dom";
+function NavItem({ label, to }) {
   return (
-    <Typography sx={getFontStyle("white", 700, "14px")}>
+    <Link to={to} style={{textDecoration: "none"}}>
+      <Typography sx={getFontStyle("white", 700, "14px")}>
       {label}
-    </Typography>
+      </Typography>
+    </Link>
   );
 }
 

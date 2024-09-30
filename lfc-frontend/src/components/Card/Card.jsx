@@ -11,6 +11,9 @@ export default function Card({
   color,
   hideInSmallScreen = false,
   reverse = null,
+  flexDir = "column",
+  imgFlxBasis = "unset",
+  gridCol="span 1"
 }) {
   let content;
   if (reverse) {
@@ -50,6 +53,7 @@ export default function Card({
           sx={{
             display: { xs: hideInSmallScreen ? "none" : "block", sm: "block" },
           }}
+          flexBasis={imgFlxBasis}
         >
           <img src={image} alt={category} width="100%" />
         </Box>
@@ -89,13 +93,15 @@ export default function Card({
       padding="10px"
       display={"block"}
       height={"100%"}
+      gridColumn={gridCol}
     >
       <Box
         sx={{
           display: "flex",
-          flexDirection: "column",
+          flexDirection: flexDir,
           justifyContent: "space-around",
           height: "100%",
+          gap: "20px",
         }}
       >
         {content}

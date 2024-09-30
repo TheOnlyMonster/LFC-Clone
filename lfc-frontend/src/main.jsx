@@ -6,6 +6,7 @@ import Layout from "./utils/Layout.jsx";
 import Login from "./pages/Login.jsx";
 import AuthLayout from "./utils/AuthLayout.jsx";
 import Join from "./pages/Join.jsx";
+import News from "./pages/News.jsx"
 const router = createBrowserRouter([
   {
     path: "/",
@@ -15,6 +16,10 @@ const router = createBrowserRouter([
         index: true,
         element: <Home />,
       },
+      {
+        path: "/all-news",
+        element: <News />
+      }
     ],
   },
   {
@@ -31,6 +36,7 @@ const router = createBrowserRouter([
       },
     ],
   },
+  
 ]);
 createRoot(document.getElementById("root")).render(
   <RouterProvider router={router} />
