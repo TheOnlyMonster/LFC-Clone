@@ -1,4 +1,4 @@
-import { Container, AppBar } from "@mui/material";
+import { Container, AppBar, Box } from "@mui/material";
 import NavigationBarBig from "./NavigationBarBig";
 import NavigationBarSmall from "./NavigationBarSmall";
 import { useEffect, useState } from "react";
@@ -10,7 +10,7 @@ function NavigationBar() {
       if (window.scrollY > 0) {
         setMarginTop("0px");
       } else {
-        setMarginTop("20px");
+        setMarginTop("0px");
       }
     };
 
@@ -29,15 +29,12 @@ function NavigationBar() {
           justifyContent: "center",
           padding: "20px 0",
           overflowX: "scroll",
+          backgroundColor: "transparent",
         }}
       >
         <img src={"adv1.gif"} />
       </Container>
-      <AppBar
-        position="sticky"
-        sx={{ backgroundColor: "transparent", padding: "0px 50px" }}
-        elevation={0}
-      >
+      <AppBar position="sticky" sx={{ padding: "0px 50px" }} elevation={0}>
         <Container
           maxWidth="xl"
           sx={{
@@ -56,6 +53,7 @@ function NavigationBar() {
           <NavigationBarBig />
         </Container>
       </AppBar>
+      <Box sx={{backgroundColor: "#dc0714", height: "50px"}}></Box>
     </>
   );
 }

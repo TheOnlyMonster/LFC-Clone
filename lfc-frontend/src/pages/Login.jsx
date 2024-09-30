@@ -142,6 +142,7 @@ export default function Login() {
             Register now
           </Typography>
         </Typography>
+        
       </Box>
     </>
   );
