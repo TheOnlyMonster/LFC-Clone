@@ -5,7 +5,7 @@ export default function CustomLink({ children, href, weight }) {
 	return (
 		<Link
 			underline="hover"
-			href={href ? href : "#"}
+			to={href ? href : "#"}
 			sx={{
 				color: "rgba(12, 12, 12, 0.7)",
 				fontFamily: `"Roboto Condensed", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", sans-serif`,
@@ -13,6 +13,7 @@ export default function CustomLink({ children, href, weight }) {
 				fontWeight: weight ? weight : 400,
 				textTransform: "uppercase",
 				lineHeight: 1.2,
+				cursor: "pointer",
 			}}
 		>
 			{children}

@@ -7,6 +7,7 @@ import Login from "./pages/Login.jsx";
 import AuthLayout from "./utils/AuthLayout.jsx";
 import Join from "./pages/Join.jsx";
 import News from "./pages/News.jsx"
+import Contact from "./pages/Contact.jsx"
 const router = createBrowserRouter([
   {
     path: "/",
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
       {
         path: "/all-news",
         element: <News />
+      },
+      {
+        path: "/contact-us",
+        element: <Contact />
       }
     ],
   },

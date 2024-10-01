@@ -311,18 +311,6 @@ export default function Home() {
         img={"league_title.svg"}
         bgColor={"#f6f6f6"}
       />
-      <Sponsors
-        num={4}
-        padding={"50px 20px"}
-        img={"standard-chartered-logo.png"}
-        bgColor={"#dc0714"}
-      />
-      <Sponsors
-        num={12}
-        padding={"50px 20px"}
-        img={"sponsor.svg"}
-        bgColor={"#b71515"}
-      />
     </>
   );
 }
