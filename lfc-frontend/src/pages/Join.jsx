@@ -39,7 +39,7 @@ export default function Join() {
           </Box>
         </Container>
 
-        <ReCAPTCHA sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY} />
+        {/* <ReCAPTCHA sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY} /> */}
         <Button
           sx={{
             backgroundColor: "#dc0714",
