@@ -25,66 +25,76 @@ export default function CardSection({
           isWhite={isWhite}
           gridTempCol={gridTempCol}
         >
-          {cards.map((card, index) => (
-            <div key={index}>
-              {index == 3 && (
-                <Box sx={{ backgroundColor: "#ffb025", padding: "15px", boxSizing: "border-box" }}>
-                  <Box>
-                    <Typography
-                      marginTop={"10px"}
-                      sx={{...getFontStyle("black", "bold", "20px"), fontSize: {md: "20px", xs: "16px"}}}
-                      display={"inline-block"}
-                    >
-                      SIGN FOR THE REDS
-                    </Typography>
-                    <Typography
-                      marginLeft={"8px"}
-                      variant="body1"
-                      sx={{ fontSize: {md: "26px", xs: "20px"} }}
-                      gutterBottom
-                      display={"inline"}
-                      color="black"
-                    >
-                      Register with LFC to win amazing prizes, watch FREE
-                      videos, listen to live commentary, get the official Club
-                      newsletter and experience the all-new eMagazine
-                    </Typography>
-                  </Box>
-                  <Box textAlign={"end"} margin={"20px 0px"}>
-                    <img
-                      src={"SIgnForReds.png"}
-                      alt="SignForReds"
-                      width="150px"
-                    />
-                  </Box>
-                  <Button
+          {cards.map((card, index) => {
+            const isRegisterCard = index === 3;
+
+            return (
+              <div key={index}>
+                {isRegisterCard ? (
+                  <Box
                     sx={{
-                      width: "100%",
-                      justifyContent: "left",
-                      backgroundColor: "black",
-                      ...getFontStyle("white", "bold", "16px"),
+                      backgroundColor: "#ffb025",
                       padding: "15px",
-                      "&:hover": {
-                        backgroundColor: "#543c13",
-                      },
+                      boxSizing: "border-box",
                     }}
                   >
-                    Register
-                  </Button>
-                </Box>
-              )}
-              {index != 3 && (
-                <Card
-                  category={card.category}
-                  image={card.image}
-                  description={card.description}
-                  link={card.link}
-                  date={card.date}
-                  color={card.color}
-                />
-              )}
-            </div>
-          ))}
+                    <Box>
+                      <Typography
+                        marginTop={"10px"}
+                        sx={{
+                          ...getFontStyle("black", "bold", "20px"),
+                          fontSize: { md: "20px", xs: "16px" },
+                        }}
+                        display={"inline-block"}
+                      >
+                        SIGN FOR THE REDS
+                      </Typography>
+                      <Typography
+                        marginLeft={"8px"}
+                        variant="body1"
+                        sx={{ fontSize: { md: "26px", xs: "20px" } }}
+                        gutterBottom
+                        display={"inline"}
+                        color="black"
+                      >
+                        Register with LFC to win amazing prizes, watch FREE
+                        videos, listen to live commentary, get the official Club
+                        newsletter, and experience the all-new eMagazine
+                      </Typography>
+                    </Box>
+                    <Box textAlign={"end"} margin={"20px 0px"}>
+                      <img
+                        src={"SIgnForReds.png"}
+                        alt="SignForReds"
+                        width="150px"
+                      />
+                    </Box>
+                    <Button
+                      sx={{
+                        width: "100%",
+                        justifyContent: "left",
+                        backgroundColor: "black",
+                        ...getFontStyle("white", "bold", "16px"),
+                        padding: "15px",
+                        "&:hover": { backgroundColor: "#543c13" },
+                      }}
+                    >
+                      Register
+                    </Button>
+                  </Box>
+                ) : (
+                  <Card
+                    category={card.author}
+                    image={card.urlToImage}
+                    description={card.description}
+                    link={card.url}
+                    date={card.publishedAt}
+                    color={card.color}
+                  />
+                )}
+              </div>
+            );
+          })}
         </Section>
       </Container>
     </Box>

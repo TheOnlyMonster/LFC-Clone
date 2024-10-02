@@ -8,6 +8,7 @@ import Card from "../components/Card/Card";
 import { useEffect, useState } from "react";
 import RetailCard from "../components/RetailCard/RetailCard";
 import { getFontStyle } from "../components/Utils/Utils";
+import { useLoaderData } from "react-router-dom";
 const card = {
   category: "Liverpool FC",
   image: "card_photo.webp",
@@ -26,6 +27,7 @@ const retailCard = {
 export default function Home() {
   const [topPosition, setTopPosition] = useState(4200);
   const [retailSub, setRetailSub] = useState(0);
+  const data = useLoaderData();
   useEffect(() => {
     const handleScroll = () => {
       const scrollY = window.scrollY;
@@ -47,7 +49,7 @@ export default function Home() {
     <>
       {/* Headlines */}
       <CardSection
-        cards={Array(6).fill(card)}
+        cards={data.slice(0, 6)}
         title="Headlines"
         link={{ title: "All News", href: "news" }}
         bgColor="#dc0714"
@@ -194,7 +196,7 @@ export default function Home() {
         title="LFC Women"
         link={{ title: "More News", href: "news?categoryId=196" }}
         bgColor="#dc0714"
-        cards={Array(3).fill(card)}
+        cards={data.slice(6, 9)}
         gridTempCol={{ xs: "repeat(3, 90%)", sm: "repeat(3, 1fr)" }}
       />
       {/* Adv 3 */}
@@ -290,7 +292,7 @@ export default function Home() {
         link={{ title: "More", href: "news?categoryId=181" }}
         bgColor="#f6f6f6"
         isWhite={false}
-        cards={Array(3).fill({ ...card, color: "black" })}
+        cards={data.slice(9, 12).map((card) => ({ ...card, color: "black" }))}
         gridTempCol={{ xs: "repeat(3, 90%)", sm: "repeat(3, 1fr)" }}
       />
       <Container maxWidth="xl">

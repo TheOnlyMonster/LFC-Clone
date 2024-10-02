@@ -1,5 +1,4 @@
 import { Typography } from "@mui/material";
-import PropTypes from "prop-types";
 import { getFontStyle } from "../Utils/Utils";
 import { Link } from "react-router-dom";
 function NavItem({ label, to }) {
@@ -14,6 +13,3 @@ function NavItem({ label, to }) {
 
 export default NavItem;
 
-NavItem.propTypes = {
-  label: PropTypes.string.isRequired,
-};

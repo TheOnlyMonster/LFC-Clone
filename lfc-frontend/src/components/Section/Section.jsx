@@ -1,5 +1,4 @@
 import { Box, Typography, Button } from "@mui/material";
-import PropTypes from "prop-types";
 import { getFontStyle } from "../Utils/Utils";
 import ArrowForwardIosRoundedIcon from "@mui/icons-material/ArrowForwardIosRounded";
 export default function Section({
@@ -74,11 +73,3 @@ export default function Section({
     </Box>
   );
 }
-Section.propTypes = {
-  title: PropTypes.string.isRequired,
-  children: PropTypes.node.isRequired,
-  link: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    href: PropTypes.string.isRequired,
-  }),
-};
